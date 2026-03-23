@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA Shop — Contact</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .contact-hero { background: var(--black); padding: 4rem 0; text-align: center; }
+  .contact-hero h1 { font-family: var(--font-head); font-size: 3.5rem; font-weight: 800; color: #fff; }
+  .contact-hero h1 span { color: var(--accent); }
+  .contact-hero p { color: #888; margin-top: 0.75rem; }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 4rem 0 5rem; align-items: start; }
+  .contact-info h2 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; }
+  .contact-info p { color: var(--gray); line-height: 1.75; margin-bottom: 2rem; }
+  .info-card { background: #fff; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; border-left: 3px solid var(--accent); }
+  .info-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .info-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2px; }
+  .info-val { font-size: 0.9rem; font-weight: 500; }
+  .faq-item { background: #fff; margin-bottom: 0.75rem; overflow: hidden; }
+  .faq-q { padding: 1rem 1.25rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; }
+  .faq-q:hover { background: var(--light); }
+  .faq-a { padding: 0 1.25rem 1rem; font-size: 0.85rem; color: var(--gray); line-height: 1.7; }
+  .contact-form-box { background: #fff; padding: 2.5rem; }
+  .contact-form-box h3 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; }
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; }
+    .contact-hero h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="contact-hero">
+    <div class="container">
+      <h1>Get in <span>Touch</span></h1>
+      <p>We're here to help. Reach out anytime — we respond within 24 hours.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contact-layout">
+      <div>
+        <div class="contact-info">
+          <h2>We'd love to hear from you.</h2>
+          <p>Have a question about your order, a product, or anything else? Our team is ready to assist you.</p>
+          <div class="info-card"><div class="info-icon">&#9993;</div><div><div class="info-title">Email</div><div class="info-val">support@novashop.in</div></div></div>
+          <div class="info-card"><div class="info-icon">&#9743;</div><div><div class="info-title">Phone</div><div class="info-val">+91 98765 43210 (Mon–Sat, 9am–6pm)</div></div></div>
+          <div class="info-card"><div class="info-icon">&#128205;</div><div><div class="info-title">Address</div><div class="info-val">NOVA HQ, Bandra West, Mumbai 400050, India</div></div></div>
+        </div>
+        <h3 style="font-family:var(--font-head);font-size:1.2rem;font-weight:800;margin:2rem 0 1rem;">FAQs</h3>
+        <div class="faq-item"><div class="faq-q">How do I track my order? <span>+</span></div><div class="faq-a">Once shipped, you'll receive a tracking link via email within 24 hours of dispatch.</div></div>
+        <div class="faq-item"><div class="faq-q">What is your return policy? <span>+</span></div><div class="faq-a">We offer hassle-free 30-day returns on all products in original condition.</div></div>
+        <div class="faq-item"><div class="faq-q">Do you ship internationally? <span>+</span></div><div class="faq-a">Currently we ship only within India. International shipping coming soon!</div></div>
+        <div class="faq-item"><div class="faq-q">How long does delivery take? <span>+</span></div><div class="faq-a">Standard delivery takes 2–4 business days. Express delivery available at checkout.</div></div>
+      </div>
+
+      <div class="contact-form-box">
+        <h3>Send Us a Message</h3>
+        <div class="form-row2">
+          <div class="form-group"><label>First Name *</label><input type="text" placeholder="Rohan" id="c-fname"></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Sharma" id="c-lname"></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" placeholder="rohan@example.com" id="c-email"></div>
+        <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+        <div class="form-group"><label>Order ID (if applicable)</label><input type="text" placeholder="NOV12345"></div>
+        <div class="form-group"><label>Subject *</label>
+          <select id="c-subject">
+            <option value="">Select a topic...</option>
+            <option>Order Inquiry</option>
+            <option>Product Question</option>
+            <option>Return / Refund</option>
+            <option>Shipping Issue</option>
+            <option>General Feedback</option>
+            <option>Partnership</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message *</label><textarea placeholder="How can we help you?" id="c-msg" style="height:120px;resize:vertical;"></textarea></div>
+        <button class="btn btn-primary btn-full" onclick="submitContact()" style="font-size:1rem;">Send Message &#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people.</p></div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li><li><a href="shop.html">Fashion</a></li><li><a href="shop.html">Electronics</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="#">Returns</a></li><li><a href="#">Track Order</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">Facebook</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop. All rights reserved.</span><span>Made with &hearts; in India</span></div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  function updateCount() { document.getElementById('cart-count').textContent = JSON.parse(localStorage.getItem('nova_cart') || '[]').length; }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2500); }
+  function submitContact() {
+    const fname = document.getElementById('c-fname').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const msg = document.getElementById('c-msg').value.trim();
+    if (!fname || !email || !msg) { showToast('Please fill all required fields.'); return; }
+    if (!email.includes('@')) { showToast('Please enter a valid email.'); return; }
+    document.getElementById('c-fname').value = '';
+    document.getElementById('c-lname').value = '';
+    document.getElementById('c-email').value = '';
+    document.getElementById('c-msg').value = '';
+    document.getElementById('c-subject').value = '';
+    showToast("Message sent! We'll reply within 24 hours.");
+  }
+  updateCount();
+</script>
+</body>
+</html>
+```
+
+---
+
+**GitHub upload steps — create these exact 8 files:**
+```
+nova-shop/
+├── style.css
+├── index.html
+├── shop.html
+├── product.html
+├── cart.html
+├── checkout.html
+├── thankyou.html
+└── contact.html
