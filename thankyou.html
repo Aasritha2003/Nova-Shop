@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA Shop — Thank You!</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .thankyou-wrap { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; background: var(--cream); padding: 4rem 1.5rem; }
+  .thankyou-card { background: #fff; max-width: 680px; width: 100%; padding: 3.5rem; text-align: center; position: relative; overflow: hidden; }
+  .thankyou-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--accent); }
+  .checkmark { width: 80px; height: 80px; background: var(--accent2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; animation: pop 0.5s ease; }
+  .checkmark svg { width: 40px; height: 40px; stroke: var(--black); stroke-width: 3; fill: none; }
+  @keyframes pop { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+  .ty-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .ty-title { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+  .ty-title span { color: var(--accent); }
+  .ty-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.75; margin-bottom: 2rem; }
+  .order-box { background: var(--light); padding: 1.5rem; text-align: left; margin-bottom: 2rem; }
+  .order-box-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 1rem; }
+  .order-detail-row { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.6rem; }
+  .order-detail-row span:first-child { color: var(--gray); }
+  .order-detail-row span:last-child { font-weight: 600; }
+  .order-id { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+  .ty-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .steps-track { display: flex; justify-content: space-between; position: relative; margin-top: 1.5rem; }
+  .steps-track::before { content: ''; position: absolute; top: 14px; left: 10%; right: 10%; height: 2px; background: var(--border); z-index: 0; }
+  .track-step { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; position: relative; z-index: 1; flex: 1; }
+  .track-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 800; }
+  .track-dot.done { background: var(--accent2); color: var(--black); }
+  .track-dot.pending { background: var(--border); color: var(--gray); }
+  .track-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); text-align: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="thankyou-wrap">
+    <div class="thankyou-card">
+      <div class="checkmark">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <div class="ty-eyebrow">&#9679; Order Confirmed</div>
+      <h1 class="ty-title">Thank <span>You!</span></h1>
+      <p class="ty-desc" id="ty-desc">Your order has been placed successfully! You'll receive a confirmation email shortly.</p>
+      <div class="order-box">
+        <div class="order-box-title">Order Details</div>
+        <div class="order-detail-row"><span>Order ID</span><span class="order-id" id="ty-order-id">#NOV12345</span></div>
+        <div class="order-detail-row"><span>Customer</span><span id="ty-name">—</span></div>
+        <div class="order-detail-row"><span>Email</span><span id="ty-email">—</span></div>
+        <div class="order-detail-row"><span>Order Date</span><span id="ty-date">—</span></div>
+        <div class="order-detail-row"><span>Order Total</span><span id="ty-total" style="color:var(--accent);font-weight:800;">—</span></div>
+        <div class="order-detail-row"><span>Estimated Delivery</span><span>2–4 Business Days</span></div>
+        <div class="order-detail-row"><span>Payment Status</span><span style="color:#166534;font-weight:700;">✓ Paid</span></div>
+      </div>
+      <div style="margin-bottom:2rem;">
+        <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gray);margin-bottom:1.25rem;">Order Tracking</p>
+        <div class="steps-track">
+          <div class="track-step"><div class="track-dot done">✓</div><div class="track-label">Confirmed</div></div>
+          <div class="track-step"><div class="track-dot done">✓</div><div class="track-label">Processing</div></div>
+          <div class="track-step"><div class="track-dot pending">&#128666;</div><div class="track-label">Shipped</div></div>
+          <div class="track-step"><div class="track-dot pending">&#127968;</div><div class="track-label">Delivered</div></div>
+        </div>
+      </div>
+      <div class="ty-actions">
+        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+      </div>
+      <p style="font-size:0.78rem;color:var(--gray);">Questions? <a href="contact.html" style="color:var(--accent);font-weight:600;">Contact our support team</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people.</p></div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop. All rights reserved.</span></div>
+  </footer>
+</div>
+
+<script>
+  function updateCount() { document.getElementById('cart-count').textContent = JSON.parse(localStorage.getItem('nova_cart') || '[]').length; }
+  const order = JSON.parse(localStorage.getItem('nova_order') || '{}');
+  if (order.name) {
+    document.getElementById('ty-name').textContent = order.name;
+    document.getElementById('ty-email').textContent = order.email;
+    document.getElementById('ty-date').textContent = order.date;
+    document.getElementById('ty-total').textContent = order.total;
+    document.getElementById('ty-order-id').textContent = '#' + order.orderId;
+    document.getElementById('ty-desc').textContent = `Hi ${order.name}! Your order has been placed. A confirmation has been sent to ${order.email}.`;
+  }
+  updateCount();
+</script>
+</body>
+</html>
