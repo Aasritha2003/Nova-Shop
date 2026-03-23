@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA Shop — Home</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero { background: var(--black); min-height: calc(100vh - 68px); display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-left { padding: 6rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-title { font-family: var(--font-head); font-size: clamp(3.5rem, 5vw, 6rem); font-weight: 800; color: #fff; line-height: 1; margin-bottom: 1.5rem; }
+  .hero-title span { color: var(--accent); }
+  .hero-desc { color: #888; font-size: 1.05rem; line-height: 1.75; max-width: 420px; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-right { display: grid; grid-template-rows: 1fr 1fr; }
+  .hero-img-a { background: var(--accent); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .hero-img-a .bg-word { font-family: var(--font-head); font-size: 14rem; font-weight: 800; color: rgba(0,0,0,0.12); line-height: 1; user-select: none; }
+  .hero-img-a .center-text { position: absolute; font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: #fff; text-align: center; }
+  .hero-img-b { background: var(--accent2); display: flex; align-items: center; justify-content: center; gap: 2rem; }
+  .stat { text-align: center; }
+  .stat .num { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; color: var(--black); }
+  .stat .lbl { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(0,0,0,0.6); }
+  .stat-divider { width: 1px; height: 50px; background: rgba(0,0,0,0.2); }
+  .marquee-bar { background: var(--accent); padding: 0.85rem 0; overflow: hidden; display: flex; }
+  .marquee-track { display: flex; gap: 2.5rem; white-space: nowrap; animation: ticker 20s linear infinite; }
+  .marquee-item { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 1.5rem; }
+  .mdot { display: inline-block; width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .promo-banner { background: var(--black); padding: 5rem 0; text-align: center; }
+  .promo-banner h2 { font-family: var(--font-head); font-size: 3.5rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+  .promo-banner h2 span { color: var(--accent); }
+  .promo-banner p { color: #888; font-size: 1rem; margin-bottom: 2rem; }
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .cat-card { height: 220px; display: flex; align-items: flex-end; padding: 1.5rem; cursor: pointer; position: relative; overflow: hidden; transition: transform 0.2s; text-decoration: none; }
+  .cat-card:hover { transform: scale(1.02); }
+  .cat-card h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: #fff; position: relative; z-index: 1; }
+  .cat-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">&#9679; New Season Collection</div>
+      <h1 class="hero-title">Shop the<br><span>Future</span><br>Today.</h1>
+      <p class="hero-desc">Premium products curated for those who demand the best. Discover the newest arrivals in fashion, tech, and lifestyle.</p>
+      <div class="hero-btns">
+        <a href="shop.html" class="btn btn-primary">Shop Now</a>
+        <a href="product.html" class="btn btn-secondary" style="color:#fff;border-color:#444;">View Collection</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-a">
+        <div class="bg-word">N</div>
+        <div class="center-text">New Arrivals<br><span style="font-size:1rem;opacity:0.7;">2025 Collection</span></div>
+      </div>
+      <div class="hero-img-b">
+        <div class="stat"><div class="num">2K+</div><div class="lbl">Products</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="num">50K+</div><div class="lbl">Customers</div></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><div class="num">4.9★</div><div class="lbl">Rating</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <div class="marquee-item">Free Shipping Over ₹999 <span class="mdot"></span></div>
+      <div class="marquee-item">New Arrivals Weekly <span class="mdot"></span></div>
+      <div class="marquee-item">Easy 30-Day Returns <span class="mdot"></span></div>
+      <div class="marquee-item">Secure Payments <span class="mdot"></span></div>
+      <div class="marquee-item">Premium Quality <span class="mdot"></span></div>
+      <div class="marquee-item">Free Shipping Over ₹999 <span class="mdot"></span></div>
+      <div class="marquee-item">New Arrivals Weekly <span class="mdot"></span></div>
+      <div class="marquee-item">Easy 30-Day Returns <span class="mdot"></span></div>
+      <div class="marquee-item">Secure Payments <span class="mdot"></span></div>
+      <div class="marquee-item">Premium Quality <span class="mdot"></span></div>
+    </div>
+  </div>
+
+  <section class="section" style="background:#fff;">
+    <div class="container">
+      <span class="section-label">Browse</span>
+      <h2 class="section-title">Shop by <span>Category</span></h2>
+      <div class="cat-grid">
+        <a href="shop.html" class="cat-card" style="background:#1a1a2e;"><h3>Fashion</h3></a>
+        <a href="shop.html" class="cat-card" style="background:#16213e;"><h3>Electronics</h3></a>
+        <a href="shop.html" class="cat-card" style="background:var(--accent);"><h3>Lifestyle</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--cream);">
+    <div class="container">
+      <span class="section-label">Trending</span>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+        <h2 class="section-title" style="margin-bottom:0;">Featured <span>Products</span></h2>
+        <a href="shop.html" class="btn btn-secondary">View All</a>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" onclick="location.href='product.html'">
+          <div class="product-thumb" style="background:#1a1a2e;"><div class="product-badge">Hot</div><span style="font-family:var(--font-head);font-size:4rem;color:var(--accent);font-weight:800;">W1</span></div>
+          <div class="product-info"><div class="product-cat">Electronics</div><div class="product-name">Nova Wireless Buds</div><div class="product-price-row"><div><span class="product-price">₹2,499</span><span class="product-old-price">₹3,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Nova Wireless Buds',2499)">Add</button></div></div>
+        </div>
+        <div class="product-card" onclick="location.href='product.html'">
+          <div class="product-thumb" style="background:var(--accent);"><div class="product-badge">New</div><span style="font-family:var(--font-head);font-size:4rem;color:#fff;font-weight:800;">S2</span></div>
+          <div class="product-info"><div class="product-cat">Fashion</div><div class="product-name">Street Runner Shoes</div><div class="product-price-row"><div><span class="product-price">₹3,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Street Runner Shoes',3999)">Add</button></div></div>
+        </div>
+        <div class="product-card" onclick="location.href='product.html'">
+          <div class="product-thumb" style="background:var(--accent2);"><div class="product-badge">Sale</div><span style="font-family:var(--font-head);font-size:4rem;color:var(--black);font-weight:800;">B3</span></div>
+          <div class="product-info"><div class="product-cat">Lifestyle</div><div class="product-name">Eco Water Bottle</div><div class="product-price-row"><div><span class="product-price">₹899</span><span class="product-old-price">₹1,299</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Eco Water Bottle',899)">Add</button></div></div>
+        </div>
+        <div class="product-card" onclick="location.href='product.html'">
+          <div class="product-thumb" style="background:#2d1b69;"><span style="font-family:var(--font-head);font-size:4rem;color:#fff;font-weight:800;">W4</span></div>
+          <div class="product-info"><div class="product-cat">Electronics</div><div class="product-name">Smart Watch Pro</div><div class="product-price-row"><div><span class="product-price">₹5,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Smart Watch Pro',5999)">Add</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="promo-banner">
+    <div class="container">
+      <h2>Get <span>20% OFF</span> Your First Order</h2>
+      <p>Use code NOVA20 at checkout. Limited time offer.</p>
+      <a href="shop.html" class="btn btn-primary">Claim Offer</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people. Discover the latest in fashion, tech, and lifestyle.</p></div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li><li><a href="shop.html">Fashion</a></li><li><a href="shop.html">Electronics</a></li><li><a href="shop.html">Lifestyle</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">Returns</a></li><li><a href="#">Track Order</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">Facebook</a></li><li><a href="#">YouTube</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop. All rights reserved.</span><span>Made with &hearts; in India</span></div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  function getCart() { return JSON.parse(localStorage.getItem('nova_cart') || '[]'); }
+  function saveCart(c) { localStorage.setItem('nova_cart', JSON.stringify(c)); }
+  function updateCount() { document.getElementById('cart-count').textContent = getCart().length; }
+  function addToCart(name, price) { const cart = getCart(); cart.push({ name, price }); saveCart(cart); updateCount(); showToast('Added to cart!'); }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => { t.style.display = 'none'; }, 2500); }
+  updateCount();
+</script>
+</body>
+</html>
