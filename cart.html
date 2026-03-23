@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA Shop — Cart</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .cart-layout { display: grid; grid-template-columns: 1fr 360px; gap: 2.5rem; padding: 3rem 0 5rem; align-items: start; }
+  .cart-header { font-family: var(--font-head); font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; }
+  .cart-item { background: #fff; display: grid; grid-template-columns: 100px 1fr auto; gap: 1.25rem; align-items: center; padding: 1.25rem; margin-bottom: 1rem; }
+  .cart-item-img { height: 100px; display: flex; align-items: center; justify-content: center; }
+  .cart-item-img span { font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; color: #fff; }
+  .item-name { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .item-cat { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .item-price { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+  .item-actions { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
+  .qty-sm { display: flex; align-items: center; border: 1.5px solid var(--border); }
+  .qty-sm button { width: 30px; height: 30px; background: var(--light); border: none; cursor: pointer; font-size: 1rem; }
+  .qty-sm button:hover { background: var(--accent); color: #fff; }
+  .qty-sm span { width: 36px; text-align: center; font-size: 0.9rem; font-weight: 600; }
+  .remove-btn { background: none; border: none; color: var(--gray); font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+  .remove-btn:hover { color: var(--accent); }
+  .item-total { text-align: right; font-family: var(--font-head); font-size: 1.2rem; font-weight: 800; }
+  .empty-cart { text-align: center; padding: 5rem 2rem; background: #fff; }
+  .empty-cart h2 { font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .empty-cart p { color: var(--gray); margin-bottom: 2rem; }
+  .cart-summary { background: #fff; padding: 2rem; position: sticky; top: 90px; }
+  .summary-title { font-family: var(--font-head); font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .summary-row.total { font-family: var(--font-head); font-size: 1.2rem; font-weight: 800; border-top: 2px solid var(--black); padding-top: 1rem; margin-top: 1rem; }
+  .coupon-row { display: flex; gap: 0; margin: 1.25rem 0; }
+  .coupon-row input { flex: 1; background: var(--light); border: 1.5px solid var(--border); border-right: none; padding: 10px 14px; font-family: var(--font-body); font-size: 0.85rem; outline: none; }
+  .coupon-row button { background: var(--black); color: #fff; border: none; padding: 10px 18px; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; text-transform: uppercase; cursor: pointer; }
+  .coupon-row button:hover { background: var(--accent); }
+  .secure-note { font-size: 0.75rem; color: var(--gray); text-align: center; margin-top: 1rem; }
+  @media (max-width: 900px) {
+    .cart-layout { grid-template-columns: 1fr; }
+    .cart-summary { position: static; }
+    .cart-item { grid-template-columns: 80px 1fr; }
+    .item-total { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="container">
+    <div class="cart-layout">
+      <div>
+        <div class="cart-header">Your Cart</div>
+        <div id="cart-items-container"></div>
+        <div style="margin-top:1.5rem;">
+          <a href="shop.html" class="btn btn-secondary">&#8592; Continue Shopping</a>
+        </div>
+      </div>
+      <div class="cart-summary">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="shipping">Free</span></div>
+        <div class="summary-row"><span>Tax (18% GST)</span><span id="tax">₹0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="total">₹0</span></div>
+        <div class="coupon-row">
+          <input type="text" placeholder="Coupon code (NOVA20)" id="coupon-input">
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <a href="checkout.html" class="btn btn-primary btn-full" id="checkout-btn">Proceed to Checkout</a>
+        <p class="secure-note">&#128274; Secure & Encrypted Checkout</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people.</p></div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop.</span></div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  const COLORS = ['#1a1a2e','#FF5C00','#00C9A7','#2d1b69','#1b4332','#7c2d12'];
+  function getCart() { return JSON.parse(localStorage.getItem('nova_cart') || '[]'); }
+  function saveCart(c) { localStorage.setItem('nova_cart', JSON.stringify(c)); }
+  function updateCount() { document.getElementById('cart-count').textContent = getCart().length; }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2500); }
+
+  function renderCart() {
+    const cart = getCart();
+    const container = document.getElementById('cart-items-container');
+    updateCount();
+    if (cart.length === 0) {
+      container.innerHTML = `<div class="empty-cart"><h2>Your cart is empty</h2><p>Looks like you haven't added anything yet.</p><a href="shop.html" class="btn btn-primary">Start Shopping</a></div>`;
+      document.getElementById('subtotal').textContent = '₹0';
+      document.getElementById('tax').textContent = '₹0';
+      document.getElementById('total').textContent = '₹0';
+      document.getElementById('checkout-btn').style.opacity = '0.5';
+      document.getElementById('checkout-btn').style.pointerEvents = 'none';
+      return;
+    }
+    const grouped = {};
+    cart.forEach(item => {
+      if (!grouped[item.name]) grouped[item.name] = { ...item, qty: 0, color: COLORS[Object.keys(grouped).length % COLORS.length] };
+      grouped[item.name].qty++;
+    });
+    let html = '';
+    Object.values(grouped).forEach(item => {
+      html += `<div class="cart-item">
+        <div class="cart-item-img" style="background:${item.color};">
+          <span>${item.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>
+        </div>
+        <div>
+          <div class="item-name">${item.name}</div>
+          <div class="item-cat">Premium Product</div>
+          <div class="item-price">₹${item.price.toLocaleString()}</div>
+          <div class="item-actions">
+            <div class="qty-sm">
+              <button onclick="changeItemQty('${item.name}', -1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeItemQty('${item.name}', 1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeItem('${item.name}')">Remove</button>
+          </div>
+        </div>
+        <div class="item-total">₹${(item.price * item.qty).toLocaleString()}</div>
+      </div>`;
+    });
+    container.innerHTML = html;
+    let subtotal = Object.values(grouped).reduce((s, i) => s + i.price * i.qty, 0);
+    let tax = Math.round(subtotal * 0.18);
+    let shipping = subtotal >= 999 ? 0 : 99;
+    document.getElementById('subtotal').textContent = '₹' + subtotal.toLocaleString();
+    document.getElementById('shipping').textContent = shipping === 0 ? 'Free' : '₹' + shipping;
+    document.getElementById('tax').textContent = '₹' + tax.toLocaleString();
+    document.getElementById('total').textContent = '₹' + (subtotal + tax + shipping).toLocaleString();
+  }
+
+  function changeItemQty(name, delta) {
+    let cart = getCart();
+    if (delta === 1) { cart.push({ name, price: cart.find(i=>i.name===name)?.price || 0 }); }
+    else { const idx = cart.findIndex(i=>i.name===name); if (idx > -1) cart.splice(idx, 1); }
+    saveCart(cart); renderCart();
+  }
+
+  function removeItem(name) {
+    let cart = getCart().filter(i => i.name !== name);
+    saveCart(cart); renderCart(); showToast('Item removed.');
+  }
+
+  function applyCoupon() {
+    const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+    if (code === 'NOVA20') showToast('Coupon applied! 20% off at checkout.');
+    else showToast('Invalid coupon code.');
+  }
+
+  renderCart();
+</script>
+</body>
+</html>
