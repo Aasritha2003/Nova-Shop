@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA Shop — Shop</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .shop-hero { background: var(--black); padding: 4rem 0; text-align: center; }
+  .shop-hero h1 { font-family: var(--font-head); font-size: 4rem; font-weight: 800; color: #fff; }
+  .shop-hero h1 span { color: var(--accent); }
+  .shop-hero p { color: #888; font-size: 1rem; margin-top: 0.75rem; }
+  .shop-layout { display: grid; grid-template-columns: 240px 1fr; gap: 2.5rem; padding: 4rem 0; }
+  .filter-sidebar { background: #fff; padding: 1.75rem; height: fit-content; position: sticky; top: 90px; }
+  .filter-title { font-family: var(--font-head); font-size: 1rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .filter-group { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+  .filter-group:last-child { border-bottom: none; margin-bottom: 0; }
+  .filter-group h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 0.85rem; }
+  .filter-option { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; cursor: pointer; font-size: 0.88rem; }
+  .filter-option input { accent-color: var(--accent); cursor: pointer; }
+  .shop-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .result-count { font-size: 0.85rem; color: var(--gray); }
+  .sort-select { background: #fff; border: 1.5px solid var(--border); padding: 8px 14px; font-family: var(--font-body); font-size: 0.85rem; outline: none; cursor: pointer; }
+  .products-grid-shop { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  @media (max-width: 900px) {
+    .shop-layout { grid-template-columns: 1fr; }
+    .filter-sidebar { position: static; }
+    .products-grid-shop { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="product.html">Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="shop-hero">
+    <div class="container">
+      <h1>All <span>Products</span></h1>
+      <p>Browse our complete collection — over 2,000 premium items</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="shop-layout">
+      <aside class="filter-sidebar">
+        <div class="filter-title">Filters</div>
+        <div class="filter-group">
+          <h4>Category</h4>
+          <label class="filter-option"><input type="checkbox" checked> All</label>
+          <label class="filter-option"><input type="checkbox"> Fashion</label>
+          <label class="filter-option"><input type="checkbox"> Electronics</label>
+          <label class="filter-option"><input type="checkbox"> Lifestyle</label>
+          <label class="filter-option"><input type="checkbox"> Beauty</label>
+        </div>
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <label class="filter-option"><input type="radio" name="price"> Under ₹500</label>
+          <label class="filter-option"><input type="radio" name="price"> ₹500 – ₹2,000</label>
+          <label class="filter-option"><input type="radio" name="price" checked> ₹2,000 – ₹5,000</label>
+          <label class="filter-option"><input type="radio" name="price"> Above ₹5,000</label>
+        </div>
+        <div class="filter-group">
+          <h4>Rating</h4>
+          <label class="filter-option"><input type="checkbox"> 5 Stars</label>
+          <label class="filter-option"><input type="checkbox" checked> 4+ Stars</label>
+          <label class="filter-option"><input type="checkbox"> 3+ Stars</label>
+        </div>
+        <div class="filter-group">
+          <h4>Availability</h4>
+          <label class="filter-option"><input type="checkbox" checked> In Stock</label>
+          <label class="filter-option"><input type="checkbox"> On Sale</label>
+        </div>
+        <button class="btn btn-primary btn-full" style="margin-top:0.5rem;">Apply Filters</button>
+      </aside>
+
+      <div>
+        <div class="shop-toolbar">
+          <span class="result-count">Showing <strong>9</strong> of 120 products</span>
+          <select class="sort-select">
+            <option>Sort: Newest</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Best Rated</option>
+          </select>
+        </div>
+        <div class="products-grid-shop">
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#1a1a2e;"><div class="product-badge">Hot</div><span style="font-family:var(--font-head);font-size:3.5rem;color:var(--accent);font-weight:800;">W1</span></div>
+            <div class="product-info"><div class="product-cat">Electronics</div><div class="product-name">Nova Wireless Buds</div><div class="product-price-row"><div><span class="product-price">₹2,499</span><span class="product-old-price">₹3,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Nova Wireless Buds',2499)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:var(--accent);"><div class="product-badge">New</div><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">S2</span></div>
+            <div class="product-info"><div class="product-cat">Fashion</div><div class="product-name">Street Runner Shoes</div><div class="product-price-row"><div><span class="product-price">₹3,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Street Runner Shoes',3999)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:var(--accent2);"><div class="product-badge">Sale</div><span style="font-family:var(--font-head);font-size:3.5rem;color:var(--black);font-weight:800;">B3</span></div>
+            <div class="product-info"><div class="product-cat">Lifestyle</div><div class="product-name">Eco Water Bottle</div><div class="product-price-row"><div><span class="product-price">₹899</span><span class="product-old-price">₹1,299</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Eco Water Bottle',899)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#2d1b69;"><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">W4</span></div>
+            <div class="product-info"><div class="product-cat">Electronics</div><div class="product-name">Smart Watch Pro</div><div class="product-price-row"><div><span class="product-price">₹5,999</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Smart Watch Pro',5999)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#1b4332;"><div class="product-badge">New</div><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">J5</span></div>
+            <div class="product-info"><div class="product-cat">Fashion</div><div class="product-name">Nova Denim Jacket</div><div class="product-price-row"><div><span class="product-price">₹2,299</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Nova Denim Jacket',2299)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#7c2d12;"><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">L6</span></div>
+            <div class="product-info"><div class="product-cat">Lifestyle</div><div class="product-name">Leather Wallet</div><div class="product-price-row"><div><span class="product-price">₹1,199</span><span class="product-old-price">₹1,799</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Leather Wallet',1199)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#0f172a;"><span style="font-family:var(--font-head);font-size:3.5rem;color:var(--accent2);font-weight:800;">K7</span></div>
+            <div class="product-info"><div class="product-cat">Electronics</div><div class="product-name">Keyboard MK7</div><div class="product-price-row"><div><span class="product-price">₹4,299</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Keyboard MK7',4299)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#86198f;"><div class="product-badge">Sale</div><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">P8</span></div>
+            <div class="product-info"><div class="product-cat">Beauty</div><div class="product-name">Perfume Elite</div><div class="product-price-row"><div><span class="product-price">₹1,799</span><span class="product-old-price">₹2,500</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Perfume Elite',1799)">Add</button></div></div>
+          </div>
+          <div class="product-card" onclick="location.href='product.html'">
+            <div class="product-thumb" style="background:#064e3b;"><span style="font-family:var(--font-head);font-size:3.5rem;color:#fff;font-weight:800;">B9</span></div>
+            <div class="product-info"><div class="product-cat">Lifestyle</div><div class="product-name">Bamboo Backpack</div><div class="product-price-row"><div><span class="product-price">₹3,499</span></div><button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart('Bamboo Backpack',3499)">Add</button></div></div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem;">
+          <button class="btn btn-secondary">Load More Products</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people.</p></div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li><li><a href="shop.html">Fashion</a></li><li><a href="shop.html">Electronics</a></li></ul></div>
+      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li><li><a href="#">Returns</a></li><li><a href="#">Track Order</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter</a></li><li><a href="#">Facebook</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop.</span><span>Made with &hearts; in India</span></div>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+  function getCart() { return JSON.parse(localStorage.getItem('nova_cart') || '[]'); }
+  function saveCart(c) { localStorage.setItem('nova_cart', JSON.stringify(c)); }
+  function updateCount() { document.getElementById('cart-count').textContent = getCart().length; }
+  function addToCart(name, price) { const cart = getCart(); cart.push({ name, price }); saveCart(cart); updateCount(); showToast('Added to cart!'); }
+  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => { t.style.display = 'none'; }, 2500); }
+  updateCount();
+</script>
+</body>
+</html>
