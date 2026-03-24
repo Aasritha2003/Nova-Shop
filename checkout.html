@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3NL91CEF5"></script>
 <script>
@@ -17,50 +17,257 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-P2C27LSK');</script>
 <!-- End Google Tag Manager -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVA Shop — Checkout</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  .checkout-hero { background: var(--black); padding: 2.5rem 0; border-bottom: 2px solid var(--accent); }
-  .checkout-steps { display: flex; align-items: center; gap: 0; margin-top: 1.5rem; }
-  .step { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-  .step-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; }
-  .step.done .step-num { background: var(--accent2); color: var(--black); }
-  .step.active .step-num { background: var(--accent); color: #fff; }
-  .step.inactive .step-num { background: #333; color: #666; }
-  .step.done span, .step.active span { color: #fff; }
-  .step.inactive span { color: #555; }
-  .step-line { flex: 1; height: 2px; background: #333; margin: 0 0.75rem; max-width: 60px; }
-  .step-line.done { background: var(--accent); }
-  .checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2.5rem; padding: 3rem 0 5rem; align-items: start; }
-  .checkout-section { background: #fff; padding: 2rem; margin-bottom: 1.5rem; }
-  .checkout-section h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 2px solid var(--accent); padding-bottom: 0.75rem; display: inline-block; }
-  .payment-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
-  .payment-option { display: flex; align-items: center; gap: 0.85rem; padding: 0.85rem 1rem; border: 1.5px solid var(--border); cursor: pointer; transition: border-color 0.2s; }
-  .payment-option:hover, .payment-option.selected { border-color: var(--accent); background: #fff8f5; }
-  .payment-option input { accent-color: var(--accent); }
-  .payment-option label { font-size: 0.9rem; font-weight: 500; cursor: pointer; flex: 1; }
-  .payment-option .pay-icon { font-size: 1.3rem; }
-  .card-fields { padding: 1rem; background: var(--light); margin-bottom: 0.5rem; display: none; }
-  .card-fields.visible { display: block; }
-  .order-summary-box { background: #fff; padding: 2rem; position: sticky; top: 90px; }
-  .summary-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; margin-bottom: 1.5rem; text-transform: uppercase; }
-  .order-item { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
-  .order-item-img { width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .order-item-img span { font-family: var(--font-head); font-size: 1.2rem; font-weight: 800; color: #fff; }
-  .order-item-name { font-size: 0.85rem; font-weight: 600; }
-  .order-item-price { font-size: 0.85rem; color: var(--accent); font-weight: 700; margin-top: 2px; }
-  .summary-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.6rem; }
-  .summary-row.total { font-family: var(--font-head); font-size: 1.2rem; font-weight: 800; border-top: 2px solid var(--black); padding-top: 1rem; margin-top: 0.75rem; }
-  .place-order-btn { width: 100%; background: var(--accent); color: #fff; border: none; padding: 16px; font-family: var(--font-head); font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: background 0.2s; margin-top: 1.25rem; }
-  .place-order-btn:hover { background: #e04d00; }
-  .secure-badges { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; font-size: 0.72rem; color: var(--gray); }
-  @media (max-width: 900px) {
-    .checkout-layout { grid-template-columns: 1fr; }
-    .order-summary-box { position: static; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – Nova Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f6f2;
+      --card: #ffffff;
+      --accent: #c8a96e;
+      --accent-dark: #a8893e;
+      --accent-light: #faf5ec;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e4e0d8;
+      --error: #d63031;
+      --input-bg: #f5f3ef;
+      --shadow: 0 4px 30px rgba(0,0,0,0.07);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 6%; background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem; font-weight: 700;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-secure {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--muted); font-weight: 500;
+    }
+
+    /* STEPS */
+    .steps-bar {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: 1rem 6%; display: flex; justify-content: center;
+    }
+    .step {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; font-weight: 500; color: #bbb;
+    }
+    .step.active { color: var(--text); }
+    .step.done   { color: var(--accent); }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%; background: #eee;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .step.active .step-num,
+    .step.done   .step-num { background: var(--accent); color: #fff; }
+    .step-line { width: 60px; height: 1px; background: #ddd; margin: 0 0.8rem; }
+
+    /* LAYOUT */
+    .checkout-wrap {
+      max-width: 1100px; margin: 0 auto; padding: 3rem 5%;
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 2.5rem; align-items: start;
+    }
+    .form-col { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    /* SECTION CARDS */
+    .section-card {
+      background: var(--card); border-radius: 16px; padding: 2rem;
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+    .section-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .step-badge {
+      background: var(--accent-light); color: var(--accent-dark);
+      font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600;
+      padding: 0.15rem 0.55rem; border-radius: 20px; letter-spacing: 0.04em;
+    }
+
+    /* FIELDS */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .qty-row  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 0.38rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .field label .req { color: var(--accent); margin-left: 2px; }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%; background: var(--input-bg);
+      border: 1.5px solid transparent; border-radius: 10px;
+      padding: 0.72rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text);
+      outline: none; transition: all 0.2s; -webkit-appearance: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #bbb; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.13);
+    }
+    .field input.err,
+    .field select.err,
+    .field textarea.err { border-color: var(--error); background: #fff8f8; }
+    .err-msg { display: none; font-size: 0.76rem; color: var(--error); margin-top: 0.3rem; }
+    .has-err .err-msg { display: block; }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    /* PAYMENT TILES */
+    .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .pay-opt {
+      display: flex; align-items: center; gap: 0.7rem;
+      background: var(--input-bg); border: 1.5px solid transparent;
+      border-radius: 10px; padding: 0.8rem 1rem;
+      cursor: pointer; transition: all 0.2s;
+      font-size: 0.9rem; font-weight: 500;
+    }
+    .pay-opt input[type="radio"] { display: none; }
+    .pay-opt.selected {
+      border-color: var(--accent); background: var(--accent-light); color: var(--accent-dark);
+    }
+    .pay-icon { font-size: 1.2rem; }
+
+    /* CHECKBOX */
+    .check-row {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.88rem; color: var(--muted); margin-top: 0.5rem; cursor: pointer;
+    }
+    .check-row input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: var(--accent);
+      margin-top: 2px; flex-shrink: 0;
+    }
+
+    /* SUBMIT BUTTON */
+    .place-btn {
+      width: 100%; padding: 1rem; background: var(--accent); color: #fff;
+      border: none; border-radius: 12px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.03em;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 1.5rem;
+    }
+    .place-btn:hover {
+      background: var(--accent-dark); transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(200,169,110,0.35);
+    }
+    .place-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    .spinner {
+      display: none; width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .place-btn.loading .btn-label { display: none; }
+    .place-btn.loading .spinner   { display: block; }
+    .secure-note {
+      text-align: center; font-size: 0.78rem; color: var(--muted); margin-top: 0.7rem;
+    }
+
+    /* ORDER SUMMARY */
+    .summary-col { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 1.2rem; }
+    .summary-card {
+      background: var(--card); border-radius: 16px; padding: 1.8rem;
+      box-shadow: var(--shadow); border: 1px solid var(--border);
+    }
+    .summary-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 1.4rem; }
+    .cart-item {
+      display: flex; gap: 1rem; align-items: center;
+      padding: 0.8rem 0; border-bottom: 1px solid var(--border);
+    }
+    .cart-item:last-of-type { border-bottom: none; }
+    .item-img {
+      width: 54px; height: 54px; border-radius: 10px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+    }
+    .item-info { flex: 1; }
+    .item-name  { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.15rem; }
+    .item-var   { font-size: 0.78rem; color: var(--muted); }
+    .item-price { font-size: 0.95rem; font-weight: 600; }
+    .summary-totals { margin-top: 1rem; }
+    .total-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.88rem; color: var(--muted); padding: 0.38rem 0;
+    }
+    .total-row.grand {
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      border-top: 1.5px solid var(--border); margin-top: 0.5rem; padding-top: 0.8rem;
+    }
+    .free { color: var(--accent-dark); font-weight: 600; }
+    .promo-row { display: flex; gap: 0.6rem; margin-top: 1rem; }
+    .promo-row input {
+      flex: 1; background: var(--input-bg); border: 1.5px solid transparent;
+      border-radius: 8px; padding: 0.6rem 0.9rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .promo-row input:focus { border-color: var(--accent); }
+    .promo-row button {
+      padding: 0.6rem 1rem; background: var(--accent-light);
+      border: 1.5px solid var(--accent); color: var(--accent-dark);
+      border-radius: 8px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    .promo-row button:hover { background: #f0e5cc; }
+    #promo-msg { font-size: 0.78rem; margin-top: 0.35rem; }
+    #promo-msg.ok   { color: var(--accent-dark); }
+    #promo-msg.fail { color: var(--error); }
+    .trust-badges { display: flex; flex-direction: column; gap: 0.6rem; }
+    .trust-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.82rem; color: var(--muted); }
+
+    /* TOAST */
+    #toast {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1a1a1a; color: #fff; padding: 0.75rem 1.6rem;
+      border-radius: 50px; font-size: 0.88rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s; z-index: 999;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .checkout-wrap { grid-template-columns: 1fr; }
+      .summary-col { position: static; order: -1; }
+    }
+    @media (max-width: 480px) {
+      .form-row, .qty-row { grid-template-columns: 1fr; }
+      .payment-grid { grid-template-columns: 1fr 1fr; }
+      .step-line { width: 25px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -68,195 +275,339 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<nav>
-  <a href="index.html" class="nav-logo">NO<span>VA</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="product.html">Products</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <div class="nav-right">
-    <a href="cart.html" class="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">Nova<span>Shop</span></a>
+    <div class="nav-secure">🔒 Secure Checkout</div>
+  </nav>
 
-<div class="page-wrap">
-  <div class="checkout-hero">
-    <div class="container">
-      <h1 style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:#fff;">Checkout</h1>
-      <div class="checkout-steps">
-        <div class="step done"><div class="step-num">✓</div><span>Cart</span></div>
-        <div class="step-line done"></div>
-        <div class="step active"><div class="step-num">2</div><span>Checkout</span></div>
-        <div class="step-line"></div>
-        <div class="step inactive"><div class="step-num">3</div><span>Confirm</span></div>
-      </div>
-    </div>
+  <!-- STEPS BAR -->
+  <div class="steps-bar">
+    <div class="step done"><div class="step-num">✓</div> Cart</div>
+    <div class="step-line"></div>
+    <div class="step active"><div class="step-num">2</div> Checkout</div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-num">3</div> Confirmation</div>
   </div>
 
-  <div class="container">
-    <div class="checkout-layout">
-      <div>
-        <div class="checkout-section">
-          <h3>Contact Information</h3>
-          <div class="form-row2">
-            <div class="form-group"><label>First Name *</label><input type="text" placeholder="Rohan" id="first-name" required></div>
-            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Sharma" id="last-name" required></div>
+  <!-- CHECKOUT LAYOUT -->
+  <div class="checkout-wrap">
+
+    <!-- FORM COLUMN -->
+    <div class="form-col">
+      <form id="checkoutForm" novalidate>
+
+        <!-- STEP 1: CONTACT INFO -->
+        <div class="section-card">
+          <h3>👤 Contact Information <span class="step-badge">STEP 1</span></h3>
+          <div class="form-row">
+            <div class="field" id="f-fname">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" name="fname" placeholder="Aasritha"/>
+              <div class="err-msg">First name is required.</div>
+            </div>
+            <div class="field" id="f-lname">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" name="lname" placeholder="Sharma"/>
+              <div class="err-msg">Last name is required.</div>
+            </div>
           </div>
-          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="rohan@example.com" id="email" required></div>
-          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="+91 98765 43210" id="phone" required></div>
+          <div class="form-row">
+            <div class="field" id="f-email">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" placeholder="you@example.com"/>
+              <div class="err-msg">Enter a valid email.</div>
+            </div>
+            <div class="field" id="f-phone">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" name="phone" placeholder="+91 98765 43210"/>
+              <div class="err-msg">Enter a valid phone number.</div>
+            </div>
+          </div>
         </div>
 
-        <div class="checkout-section">
-          <h3>Shipping Address</h3>
-          <div class="form-group"><label>Street Address *</label><input type="text" placeholder="123, MG Road" id="address" required></div>
-          <div class="form-group"><label>Apartment / Suite (Optional)</label><input type="text" placeholder="Apt 4B, Floor 2"></div>
-          <div class="form-row2">
-            <div class="form-group"><label>City *</label><input type="text" placeholder="Mumbai" id="city" required></div>
-            <div class="form-group"><label>State *</label>
-              <select id="state">
-                <option value="">Select State</option>
-                <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option>
-                <option>Tamil Nadu</option><option>Gujarat</option><option>Rajasthan</option>
-                <option>West Bengal</option><option>Telangana</option><option>Uttar Pradesh</option>
+        <!-- STEP 2: SHIPPING ADDRESS -->
+        <div class="section-card">
+          <h3>🚚 Shipping Address <span class="step-badge">STEP 2</span></h3>
+          <div class="field" id="f-address">
+            <label>Street Address <span class="req">*</span></label>
+            <input type="text" name="address" placeholder="House no., Street, Area"/>
+            <div class="err-msg">Address is required.</div>
+          </div>
+          <div class="form-row">
+            <div class="field" id="f-city">
+              <label>City <span class="req">*</span></label>
+              <input type="text" name="city" placeholder="Hyderabad"/>
+              <div class="err-msg">City is required.</div>
+            </div>
+            <div class="field" id="f-state">
+              <label>State <span class="req">*</span></label>
+              <select name="state">
+                <option value="">— Select —</option>
+                <option>Andhra Pradesh</option>
+                <option selected>Telangana</option>
+                <option>Karnataka</option>
+                <option>Tamil Nadu</option>
+                <option>Maharashtra</option>
+                <option>Delhi</option>
+                <option>Gujarat</option>
+                <option>Rajasthan</option>
+                <option>West Bengal</option>
+                <option>Other</option>
+              </select>
+              <div class="err-msg">Please select a state.</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field" id="f-pin">
+              <label>PIN Code <span class="req">*</span></label>
+              <input type="text" name="pin" maxlength="6" placeholder="500001"/>
+              <div class="err-msg">Enter a valid 6-digit PIN.</div>
+            </div>
+            <div class="field">
+              <label>Country</label>
+              <input type="text" value="India" readonly style="background:#eee;cursor:default"/>
+            </div>
+          </div>
+          <label class="check-row">
+            <input type="checkbox" name="save_address" checked/>
+            Save this address for future orders
+          </label>
+        </div>
+
+        <!-- STEP 3: ORDER DETAILS -->
+        <div class="section-card">
+          <h3>📦 Order Details <span class="step-badge">STEP 3</span></h3>
+          <div class="field" id="f-product">
+            <label>Product Name <span class="req">*</span></label>
+            <input type="text" name="product" placeholder="e.g. Nova Tote Bag – Cream"/>
+            <div class="err-msg">Please enter the product name.</div>
+          </div>
+          <div class="qty-row">
+            <div class="field" id="f-size">
+              <label>Size / Variant</label>
+              <select name="size">
+                <option value="">N/A</option>
+                <option>XS</option><option>S</option><option>M</option>
+                <option>L</option><option>XL</option><option>One Size</option>
               </select>
             </div>
+            <div class="field" id="f-qty">
+              <label>Quantity <span class="req">*</span></label>
+              <input type="number" name="quantity" min="1" max="99" value="1"/>
+              <div class="err-msg">Min quantity is 1.</div>
+            </div>
+            <div class="field" id="f-price">
+              <label>Price (₹) <span class="req">*</span></label>
+              <input type="number" name="price" min="0" placeholder="499"/>
+              <div class="err-msg">Enter the product price.</div>
+            </div>
           </div>
-          <div class="form-row2">
-            <div class="form-group"><label>PIN Code *</label><input type="text" placeholder="400001" id="pin" required></div>
-            <div class="form-group"><label>Country</label><input type="text" value="India" readonly style="background:#eee;"></div>
+          <div class="field">
+            <label>Special Instructions</label>
+            <textarea name="notes" placeholder="Gift wrapping, colour preference, etc."></textarea>
           </div>
         </div>
 
-        <div class="checkout-section">
-          <h3>Payment Method</h3>
-          <div class="payment-options">
-            <div class="payment-option selected" onclick="selectPayment(this,'card')">
-              <input type="radio" name="payment" id="pay-card" checked>
-              <span class="pay-icon">&#128179;</span>
-              <label for="pay-card">Credit / Debit Card</label>
-            </div>
-            <div class="card-fields visible" id="card-fields">
-              <div class="form-group"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" maxlength="19"></div>
-              <div class="form-row2">
-                <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY"></div>
-                <div class="form-group"><label>CVV</label><input type="text" placeholder="123" maxlength="3"></div>
-              </div>
-              <div class="form-group"><label>Name on Card</label><input type="text" placeholder="Rohan Sharma"></div>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this,'upi')">
-              <input type="radio" name="payment" id="pay-upi">
-              <span class="pay-icon">&#128242;</span>
-              <label for="pay-upi">UPI / Google Pay / PhonePe</label>
-            </div>
-            <div class="card-fields" id="upi-fields">
-              <div class="form-group"><label>UPI ID</label><input type="text" placeholder="yourname@upi"></div>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this,'cod')">
-              <input type="radio" name="payment" id="pay-cod">
-              <span class="pay-icon">&#128181;</span>
-              <label for="pay-cod">Cash on Delivery</label>
-            </div>
-            <div class="payment-option" onclick="selectPayment(this,'netbanking')">
-              <input type="radio" name="payment" id="pay-nb">
-              <span class="pay-icon">&#127974;</span>
-              <label for="pay-nb">Net Banking</label>
-            </div>
+        <!-- STEP 4: PAYMENT -->
+        <div class="section-card">
+          <h3>💳 Payment Method <span class="step-badge">STEP 4</span></h3>
+          <div class="payment-grid">
+            <label class="pay-opt selected">
+              <input type="radio" name="payment" value="UPI" checked/>
+              <span class="pay-icon">📱</span> UPI / GPay
+            </label>
+            <label class="pay-opt">
+              <input type="radio" name="payment" value="Card"/>
+              <span class="pay-icon">💳</span> Credit / Debit Card
+            </label>
+            <label class="pay-opt">
+              <input type="radio" name="payment" value="NetBanking"/>
+              <span class="pay-icon">🏦</span> Net Banking
+            </label>
+            <label class="pay-opt">
+              <input type="radio" name="payment" value="COD"/>
+              <span class="pay-icon">🏠</span> Cash on Delivery
+            </label>
           </div>
-          <div style="background:var(--light);padding:0.85rem 1rem;font-size:0.8rem;color:var(--gray);">
-            &#128274; Your payment information is encrypted and secure.
+          <div id="f-payment">
+            <div class="err-msg" style="display:none">Please select a payment method.</div>
           </div>
+
+          <label class="check-row" style="margin-top:1.2rem">
+            <input type="checkbox" name="terms" id="termsCheck"/>
+            I agree to the
+            <a href="#" style="color:var(--accent-dark);text-decoration:none;font-weight:600">Terms &amp; Conditions</a>
+            and
+            <a href="#" style="color:var(--accent-dark);text-decoration:none;font-weight:600">Return Policy</a>
+          </label>
+          <div id="terms-err" style="display:none;font-size:0.76rem;color:var(--error);margin-top:0.3rem">
+            Please accept the terms to proceed.
+          </div>
+
+          <button type="submit" class="place-btn">
+            <span class="btn-label">🛒 Place Order</span>
+            <div class="spinner"></div>
+          </button>
+          <p class="secure-note">🔒 Your information is 100% secure and encrypted</p>
         </div>
+
+      </form>
+    </div>
+
+    <!-- ORDER SUMMARY COLUMN -->
+    <div class="summary-col">
+      <div class="summary-card">
+        <h3>🛍️ Order Summary</h3>
+        <div class="cart-item">
+          <div class="item-img">👜</div>
+          <div class="item-info">
+            <div class="item-name">Nova Tote Bag</div>
+            <div class="item-var">Cream · Qty 1</div>
+          </div>
+          <div class="item-price">₹799</div>
+        </div>
+        <div class="cart-item">
+          <div class="item-img">📿</div>
+          <div class="item-info">
+            <div class="item-name">Boho Bracelet Set</div>
+            <div class="item-var">Gold · Qty 2</div>
+          </div>
+          <div class="item-price">₹498</div>
+        </div>
+        <div class="summary-totals">
+          <div class="total-row"><span>Subtotal</span><span>₹1,297</span></div>
+          <div class="total-row"><span>Shipping</span><span class="free">FREE</span></div>
+          <div class="total-row"><span>Tax (GST 18%)</span><span>₹233</span></div>
+          <div class="total-row grand"><span>Total</span><span>₹1,530</span></div>
+        </div>
+        <div class="promo-row">
+          <input type="text" id="promoInput" placeholder="Promo code"/>
+          <button type="button" onclick="applyPromo()">Apply</button>
+        </div>
+        <div id="promo-msg"></div>
       </div>
 
-      <div class="order-summary-box">
-        <div class="summary-title">Order Summary</div>
-        <div id="order-items"></div>
-        <div class="summary-row"><span>Subtotal</span><span id="co-subtotal">₹0</span></div>
-        <div class="summary-row"><span>Shipping</span><span>Free</span></div>
-        <div class="summary-row"><span>GST (18%)</span><span id="co-tax">₹0</span></div>
-        <div class="summary-row total"><span>Total</span><span id="co-total">₹0</span></div>
-        <button class="place-order-btn" onclick="placeOrder()">Place Order &#8594;</button>
-        <div class="secure-badges">
-          <span>&#128274; SSL Secure</span>
-          <span>&#10003; Verified</span>
-          <span>&#128666; Fast Delivery</span>
-        </div>
+      <div class="summary-card trust-badges">
+        <div class="trust-item"><span>🚚</span><span>Free delivery on orders above ₹999</span></div>
+        <div class="trust-item"><span>↩️</span><span>Easy 7-day returns</span></div>
+        <div class="trust-item"><span>🔒</span><span>Secure payment gateway</span></div>
+        <div class="trust-item"><span>✅</span><span>100% authentic products</span></div>
+        <div class="trust-item"><span>💬</span><span>24/7 customer support</span></div>
       </div>
     </div>
+
   </div>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand"><a href="index.html" class="nav-logo">NO<span>VA</span></a><p>Premium shopping for premium people.</p></div>
-      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">All Products</a></li></ul></div>
-      <div class="footer-col"><h4>Help</h4><ul><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Instagram</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>&copy; 2025 NOVA Shop.</span></div>
-  </footer>
-</div>
+  <div id="toast"></div>
 
-<div class="toast" id="toast"></div>
-<script>
-  const COLORS = ['#1a1a2e','#FF5C00','#00C9A7','#2d1b69','#1b4332','#7c2d12'];
-  function getCart() { return JSON.parse(localStorage.getItem('nova_cart') || '[]'); }
-  function updateCount() { document.getElementById('cart-count').textContent = getCart().length; }
-  function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2500); }
-
-  function renderSummary() {
-    const cart = getCart();
-    const grouped = {};
-    cart.forEach(item => {
-      if (!grouped[item.name]) grouped[item.name] = { ...item, qty: 0, color: COLORS[Object.keys(grouped).length % COLORS.length] };
-      grouped[item.name].qty++;
+  <script>
+    /* PAYMENT TILE HIGHLIGHT */
+    document.querySelectorAll('.pay-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input[type="radio"]').checked = true;
+      });
     });
-    let html = '';
-    Object.values(grouped).forEach(item => {
-      html += `<div class="order-item">
-        <div class="order-item-img" style="background:${item.color};">
-          <span>${item.name.split(' ').map(w=>w[0]).join('').slice(0,2)}</span>
-        </div>
-        <div>
-          <div class="order-item-name">${item.name} × ${item.qty}</div>
-          <div class="order-item-price">₹${(item.price*item.qty).toLocaleString()}</div>
-        </div>
-      </div>`;
+
+    /* PROMO CODE */
+    const PROMO_CODES = { 'NOVA10': '10% off applied!', 'WELCOME': 'Welcome 15% off applied!' };
+    function applyPromo() {
+      const code = document.getElementById('promoInput').value.trim().toUpperCase();
+      const msg  = document.getElementById('promo-msg');
+      if (PROMO_CODES[code]) { msg.textContent = '🎉 ' + PROMO_CODES[code]; msg.className = 'ok'; }
+      else                   { msg.textContent = '❌ Invalid promo code.';   msg.className = 'fail'; }
+    }
+
+    /* VALIDATION HELPERS */
+    function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function isPhone(v) { return /^[\d\s\+\-\(\)]{7,15}$/.test(v); }
+    function isPin(v)   { return /^\d{6}$/.test(v); }
+
+    function showErr(id, show) {
+      const el = document.getElementById(id); if (!el) return;
+      el.classList.toggle('has-err', show);
+      const inp = el.querySelector('input, select, textarea');
+      if (inp) inp.classList.toggle('err', show);
+      const msg = el.querySelector('.err-msg');
+      if (msg) msg.style.display = show ? 'block' : 'none';
+    }
+
+    function showToast(txt, dur = 3000) {
+      const t = document.getElementById('toast');
+      t.textContent = txt; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), dur);
+    }
+
+    /* FORM SUBMIT */
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const f = this;
+      let ok = true;
+
+      const fname = f.fname.value.trim();
+      const lname = f.lname.value.trim();
+      const email = f.email.value.trim();
+      const phone = f.phone.value.trim();
+      showErr('f-fname', !fname);           if (!fname)          ok = false;
+      showErr('f-lname', !lname);           if (!lname)          ok = false;
+      showErr('f-email', !isEmail(email));  if (!isEmail(email)) ok = false;
+      showErr('f-phone', !isPhone(phone));  if (!isPhone(phone)) ok = false;
+
+      const address = f.address.value.trim();
+      const city    = f.city.value.trim();
+      const state   = f.state.value;
+      const pin     = f.pin.value.trim();
+      showErr('f-address', !address);       if (!address)        ok = false;
+      showErr('f-city',    !city);          if (!city)           ok = false;
+      showErr('f-state',   !state);         if (!state)          ok = false;
+      showErr('f-pin',     !isPin(pin));    if (!isPin(pin))     ok = false;
+
+      const product = f.product.value.trim();
+      const qty     = parseInt(f.quantity.value);
+      const price   = parseFloat(f.price.value);
+      showErr('f-product', !product);             if (!product)        ok = false;
+      showErr('f-qty',     !qty || qty < 1);      if (!qty || qty < 1) ok = false;
+      showErr('f-price',   isNaN(price));          if (isNaN(price))    ok = false;
+
+      const payment = f.payment ? f.payment.value : '';
+      const payErr  = document.querySelector('#f-payment .err-msg');
+      if (!payment) { if (payErr) payErr.style.display = 'block'; ok = false; }
+      else          { if (payErr) payErr.style.display = 'none'; }
+
+      const termsEl  = document.getElementById('termsCheck');
+      const termsErr = document.getElementById('terms-err');
+      if (!termsEl.checked) { termsErr.style.display = 'block'; ok = false; }
+      else                  { termsErr.style.display = 'none'; }
+
+      if (!ok) { showToast('⚠️ Please fix the errors above.'); return; }
+
+      const btn = f.querySelector('.place-btn');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        showToast('🎉 Order placed! Redirecting…', 2000);
+        setTimeout(() => { window.location.href = 'thankyou.html'; }, 1800);
+      }, 1400);
     });
-    if (cart.length === 0) html = '<p style="color:var(--gray);font-size:0.9rem;">No items. <a href="shop.html" style="color:var(--accent);">Shop now</a></p>';
-    document.getElementById('order-items').innerHTML = html;
-    const sub = Object.values(grouped).reduce((s,i) => s + i.price*i.qty, 0);
-    const tax = Math.round(sub * 0.18);
-    document.getElementById('co-subtotal').textContent = '₹' + sub.toLocaleString();
-    document.getElementById('co-tax').textContent = '₹' + tax.toLocaleString();
-    document.getElementById('co-total').textContent = '₹' + (sub + tax).toLocaleString();
-  }
 
-  function selectPayment(el, type) {
-    document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    el.querySelector('input').checked = true;
-    document.querySelectorAll('.card-fields').forEach(f => f.classList.remove('visible'));
-    if (type === 'card') document.getElementById('card-fields').classList.add('visible');
-    if (type === 'upi') document.getElementById('upi-fields').classList.add('visible');
-  }
+    /* LIVE CLEAR ERRORS */
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => {
+        el.classList.remove('err');
+        const field = el.closest('.field');
+        if (field) {
+          field.classList.remove('has-err');
+          const msg = field.querySelector('.err-msg');
+          if (msg) msg.style.display = 'none';
+        }
+      });
+    });
+  </script>
 
-  function placeOrder() {
-    const firstName = document.getElementById('first-name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const pin = document.getElementById('pin').value.trim();
-    if (!firstName || !email || !address || !pin) { showToast('Please fill all required fields.'); return; }
-    if (!email.includes('@')) { showToast('Please enter a valid email.'); return; }
-    if (getCart().length === 0) { showToast('Your cart is empty!'); return; }
-    const total = document.getElementById('co-total').textContent;
-    localStorage.setItem('nova_order', JSON.stringify({ name: firstName, email, total, date: new Date().toLocaleDateString('en-IN'), orderId: 'NOV' + Math.floor(Math.random()*90000+10000) }));
-    localStorage.removeItem('nova_cart');
-    location.href = 'thankyou.html';
-  }
-
-  updateCount(); renderSummary();
-</script>
 </body>
 </html>
